@@ -11,9 +11,6 @@ class SimpleDenseNet(nn.Module):
         output_size: int = 10,
     ):
         super().__init__()
-        print('----------------------------------------')
-        print(input_size,lin1_size, lin2_size,lin3_size )
-        print('----------------------------------------')
 
         self.model = nn.Sequential(
             nn.Linear(input_size, lin1_size),
@@ -30,13 +27,9 @@ class SimpleDenseNet(nn.Module):
 
     def forward(self, x):
         batch_size, channels, width, height = x.size()
-
-        print(batch_size, channels, width, height)
-
         # (batch, 1, width, height) -> (batch, 1*width*height)
         x = x.view(batch_size, -1)
         return self.model(x)
-
 
 if __name__ == "__main__":
     _ = SimpleDenseNet()
