@@ -1,4 +1,4 @@
-This template is from this [awesome]() repository. 
+This template is from this [awesome](https://github.com/ashleve/lightning-hydra-template) repository. 
 
 ### Changes made to the template
 
