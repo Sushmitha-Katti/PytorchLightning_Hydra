@@ -1,4 +1,4 @@
-This template is from this [awesome](https://github.com/ashleve/lightning-hydra-template) repository. 
+This template is from this [awesome](https://github.com/ashleve/lightning-hydra-template) repository.
 
 ### Changes made to the template
 
@@ -30,18 +30,20 @@ docker run cifar10:latest src/eval.py
 ```
 
 4. To change model
- - If you are giving experiment file: change the name in model_name
- - By default it will be : model/cifar10.yml - model_name
- 
 
-## Assignement Implementation
+- If you are giving experiment file: change the name in model_name
+- By default it will be : model/cifar10.yml - model_name
+
+## Assignment Implementation
 
 1. New data module(cifar10_datamodule) is added [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/src/datamodules/cifar10_datamodule.py) in datamodule
-   - Implementation is simialr to MNIST. Changed the reference of MNIST to CIFAR10
+
+   - Implementation is similar to MNIST. Changed the reference of MNIST to CIFAR10
 
 2. New model(cidar10_module) is added [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/src/models/cifar10_module.py) in module.
-   - Similar Implemetation as MNIST. But removed net parameter from init and added model name parameter to dynamically take timm pretrained model as input.
-   
+
+   - Similar Implementation as MNIST. But removed net parameter from init and added model name parameter to dynamically take timm pretrained model as input.
+
    ```python
    def __init__(
         self,
@@ -73,15 +75,14 @@ docker run cifar10:latest src/eval.py
 
         # for tracking best so far validation accuracy
         self.val_acc_best = MaxMetric()
-   
+
    ```
-   
 
 3. cifar10 config datamodule added [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/tree/main/configs/datamodule)
 
-4. New model cifar10 is added [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/configs/model/cifar10.yaml) in model configs with the integration of timm. net paramert was removed and model_name parameter was introduced to dynamically give timm supported model name. 
+4. New model cifar10 is added [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/configs/model/cifar10.yaml) in model configs with the integration of timm. net parameter was removed and model_name parameter was introduced to dynamically give timm supported model name.
 
-5. In experiment example.yml removed net paramter and added model_name parameter [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/configs/experiment/example.yaml)
+5. In experiment example.yml removed net parameter and added model_name parameter [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/configs/experiment/example.yaml)
 
 6. In [train.yml](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/configs/train.yaml) and [eval.yml](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/configs/eval.yaml) changed the references from mnist to cifar
 
@@ -89,36 +90,21 @@ docker run cifar10:latest src/eval.py
 
 8. Added [Dockerfile](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/Dockerfile) with the below content
 
- ```docker
- FROM python:3.8-slim
+```docker
+FROM python:3.8-slim
 
- WORKDIR /opt/src
+WORKDIR /opt/src
 
- COPY requirements.txt requirements.txt
+COPY requirements.txt requirements.txt
 
- RUN pip3 install --no-cache-dir --user -r requirements.txt
+RUN pip3 install --no-cache-dir --user -r requirements.txt
 
- COPY . .
- ```
- 9. Added docker build command in [makefile](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/Makefile)
- 
-  ```yml
-  build:
-       docker build -t cifar10 .
-  ```
+COPY . .
+```
 
+9. Added docker build command in [makefile](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/Makefile)
 
-
-
-
-
-
-
- 
-
- 
-
- 
-
-
-
+```yml
+build:
+     docker build -t cifar10 .
+```
