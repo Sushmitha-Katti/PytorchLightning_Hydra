@@ -13,7 +13,7 @@ This template is from this [awesome](https://github.com/ashleve/lightning-hydra-
 1. Build docker image
 
 ```bash
-make build #using makefile
+make build #using makefile, using the image name as cifar10
 
 ```
 
