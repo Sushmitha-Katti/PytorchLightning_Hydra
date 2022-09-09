@@ -24,7 +24,7 @@ class CIFAR10LitModule(LightningModule):
 
     def __init__(
         self,
-        model_name: "resnet34",
+        model_name: str,
         optimizer: torch.optim.Optimizer,
     ):
         super().__init__()
