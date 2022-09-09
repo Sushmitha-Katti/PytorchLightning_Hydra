@@ -29,6 +29,9 @@ test-full: ## Run all tests
 train: ## Train the model
 	python src/train.py
 
+build:
+	docker build -t cifar10 .
+
 debug: ## Enter debugging mode with pdb
 	#
 	# tips:
