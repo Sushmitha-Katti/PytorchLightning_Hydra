@@ -37,8 +37,45 @@ docker run cifar10:latest src/eval.py
 ## Assignement Implementation
 
 1. New data module(cifar10_datamodule) is added [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/src/datamodules/cifar10_datamodule.py) in datamodule
+   - Implementation is simialr to MNIST. Changed the reference of MNIST to CIFAR10
 
 2. New model(cidar10_module) is added [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/blob/main/src/models/cifar10_module.py) in module.
+   - Similar Implemetation as MNIST. But removed net parameter from init and added model name parameter to dynamically take timm pretrained model as input.
+   
+   ```python
+   def __init__(
+        self,
+        model_name: 'resnet34',  #----------------NEW CHANGE ------------
+        optimizer: torch.optim.Optimizer,
+    ):
+        super().__init__()
+
+        # this line allows to access init params with 'self.hparams' attribute
+        # also ensures init params will be stored in ckpt
+        self.save_hyperparameters(logger=False, ignore=["net"])
+
+        #------------------- THIS IS NEW CHANGE -------------------
+        self.net = timm.create_model(model_name, pretrained = True)
+        #----------------------------------------------------------
+
+        # loss function
+        self.criterion = torch.nn.CrossEntropyLoss()
+
+        # metric objects for calculating and averaging accuracy across batches
+        self.train_acc = Accuracy()
+        self.val_acc = Accuracy()
+        self.test_acc = Accuracy()
+
+        # for averaging loss across batches
+        self.train_loss = MeanMetric()
+        self.val_loss = MeanMetric()
+        self.test_loss = MeanMetric()
+
+        # for tracking best so far validation accuracy
+        self.val_acc_best = MaxMetric()
+   
+   ```
+   
 
 3. cifar10 config datamodule added [here](https://github.com/Sushmitha-Katti/PytorchLightning_Hydra/tree/main/configs/datamodule)
 
