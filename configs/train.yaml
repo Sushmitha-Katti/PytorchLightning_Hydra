@@ -50,9 +50,6 @@
 # # seed for random number generators in pytorch, numpy and python.random
 # seed: null
 
-
-
-
 defaults:
   - _self_
   - datamodule: cifar10.yaml
@@ -100,4 +97,3 @@ ckpt_path: null
 
 # seed for random number generators in pytorch, numpy and python.random
 seed: null
-

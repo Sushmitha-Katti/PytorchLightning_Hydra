@@ -1,11 +1,10 @@
 from typing import Any, List
 
+import timm
 import torch
 from pytorch_lightning import LightningModule
 from torchmetrics import MaxMetric, MeanMetric
 from torchmetrics.classification.accuracy import Accuracy
-import timm
-
 
 
 class CIFAR10LitModule(LightningModule):
@@ -25,7 +24,7 @@ class CIFAR10LitModule(LightningModule):
 
     def __init__(
         self,
-        model_name: 'resnet34',
+        model_name: "resnet34",
         optimizer: torch.optim.Optimizer,
     ):
         super().__init__()
@@ -34,8 +33,7 @@ class CIFAR10LitModule(LightningModule):
         # also ensures init params will be stored in ckpt
         self.save_hyperparameters(logger=False, ignore=["net"])
 
-
-        self.net = timm.create_model(model_name, pretrained = True)
+        self.net = timm.create_model(model_name, pretrained=True)
 
         # loss function
         self.criterion = torch.nn.CrossEntropyLoss()

@@ -17,8 +17,6 @@
 # # passing checkpoint path is necessary for evaluation
 # ckpt_path: ???
 
-
-
 defaults:
   - _self_
   - datamodule: cifar10.yaml # choose datamodule with `test_dataloader()` for evaluation

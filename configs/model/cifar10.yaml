@@ -1,12 +1,9 @@
 _target_: src.models.cifar10_module.CIFAR10LitModule
 
-model_name: 'resnet34'
+model_name: "resnet34"
 
 optimizer:
   _target_: torch.optim.Adam
   _partial_: true
   lr: 0.001
   weight_decay: 0.0
-
-
-  
