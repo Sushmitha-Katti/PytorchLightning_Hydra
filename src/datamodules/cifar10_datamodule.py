@@ -68,7 +68,7 @@ class CIFAR10DataModule(LightningDataModule):
         Do not use it to assign state (self.x = y).
         """
         CIFAR10(self.hparams.data_dir, train=True, download=True)
-                    
+
         CIFAR10(self.hparams.data_dir, train=False, download=True)
 
     def setup(self, stage: Optional[str] = None):

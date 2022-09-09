@@ -37,7 +37,6 @@
 #     tags: ${tags}
 #     group: "mnist"
 
-
 defaults:
   - override /datamodule: cifar10.yaml
   - override /model: cifar10.yaml
@@ -59,7 +58,7 @@ trainer:
 model:
   optimizer:
     lr: 0.002
-  model_name: 'resnet34'
+  model_name: "resnet34"
 
 datamodule:
   batch_size: 64
